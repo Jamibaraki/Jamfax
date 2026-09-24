@@ -2,7 +2,7 @@ const key=CONFIG.WEATHER_API_KEY;
 const base="https://api.weatherapi.com/v1/";
 const endpoint="current.json?q="
 const parameters=CONFIG.WEATHER_LOCATION;
-url=base+endpoint+parameters+"&key="+key;
+const url=base+endpoint+parameters+"&key="+key;
   
 fetch(url)
 .then(response => {
@@ -17,4 +17,5 @@ fetch(url)
 })
 .catch(error => {
   console.error('Error:', error);
+  document.getElementById("target").value = "network error";
 });

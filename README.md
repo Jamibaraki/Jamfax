@@ -13,7 +13,7 @@ Rename config.example.js to config.js
 Replace the values in config.js:
 
 * WEATHER_API_KEY: your new API key.
-* WEATHER_LOCATION: your lattitude and longitude, eg "35.5098,139.6145" if you're at Yokohama Ramen Museum.
+* WEATHER_LOCATION: your latitude and longitude, eg "35.5098,139.6145" if you're at Yokohama Ramen Museum.
 
 Open index.html in your browser
 
