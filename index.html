@@ -7,29 +7,7 @@
 </head>
 <body>
 <script src="config.js"></script>
-<script>
-  key=CONFIG.WEATHER_API_KEY;
-  base="http://api.weatherapi.com/v1/";
-  endpoint="current.json?q="
-  parameters=CONFIG.WEATHER_LOCATION;
-  url=base+endpoint+parameters+"&key="+key;
-  
-	fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    document.getElementById("target").value = data.current.temp_c;
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-	</script>
+<script src="main.js"></script>
 
 <textarea id="target" cols="50" rows="10">
   Waiting for data..
