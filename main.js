@@ -9,9 +9,18 @@ class WeatherDataObject {
   windspeed;
   summary;//condition: rainy, sunny, etc
   summarypicurl;
+  feelslike;
 }
-  
-fetch(url)
+
+if( CONFIG.LOAD_WEATHER == 1 ){
+  loadWeather();
+} else {
+  document.getElementById("weather-card").innerHTML=`weather disabled`;
+}
+
+function loadWeather(){
+
+  fetch(url)
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -25,6 +34,7 @@ fetch(url)
   weatherdata.windspeed = data.current.wind_mph;
   weatherdata.summary = data.current.condition.text;
   weatherdata.summarypicurl = data.current.condition.icon;
+  weatherdata.feelslike = data.current.feelslike_c;
   
   // Make sure the icon URL is complete (WeatherAPI sometimes returns //cdn...)
   if (weatherdata.summarypicurl && weatherdata.summarypicurl.startsWith("//")) {
@@ -42,6 +52,10 @@ fetch(url)
   document.getElementById("weather-card").innerHTML =
     `<div class="status error">Could not load weather data</div>`;
 });
+
+}
+
+
 
 // New rendering function
 function renderWeather(weather) {
@@ -64,7 +78,7 @@ function renderWeather(weather) {
       <!-- Easy to add more fields later -->
       <div class="detail">
         <div class="detail-label">Feels like</div>
-        <div class="detail-value">—</div>
+        <div class="detail-value">${weather.feelslike}°</div>
       </div>
     </div>
   `;
