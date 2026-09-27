@@ -22,9 +22,9 @@ Replace the values in **config.js**:
 * WEATHER_API_KEY: your new API key.
 * WEATHER_LOCATION: your latitude and longitude, eg "35.5098,139.6145" if you're at Yokohama Ramen Museum.
 
-Optionally set these values to 1 or 0 depending on what you want to see.
-1 = visible, 0 = invisible
-DEV_MODE: "0", //test output
+Optionally set these values to 1 or 0 depending on what you want to see.  
+1 = visible, 0 = invisible  
+DEV_MODE: "0", //test output  
 LOAD_WEATHER: "1",
 
 
