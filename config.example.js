@@ -5,6 +5,8 @@ const CONFIG = {
   WEATHER_API_KEY: "your_api_key_here",
   WEATHER_LOCATION: "0.0000,0.0000", //replace values with your latitude and longitude
 
+  SPORTS_API_KEY: "your_api_key_here",
+
   // enables a text area used to output quick tests, etc
   // 1=active 0=disabled
   DEV_MODE: "0", 
