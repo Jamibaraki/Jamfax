@@ -14,7 +14,7 @@ Currently works with:
 weatherapi.com
 
 pending..  
-https://www.football-data.org/
+football-data.org/
 
 Rename config.example.js to config.js  
 Replace the values in config.js:
