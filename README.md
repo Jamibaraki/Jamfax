@@ -8,14 +8,15 @@ The goal is a compact, at-a-glance design that minimizes the need for scrolling.
 
 ### Setup
 
-Sign up and get API keys from your required services. 
-Currently works with:
+Sign up and get API keys from your required services.  
+
+Currently works with:  
 weatherapi.com
 
-//pending..
+pending..  
 https://www.football-data.org/
 
-Rename config.example.js to config.js
+Rename config.example.js to config.js  
 Replace the values in config.js:
 
 * WEATHER_API_KEY: your new API key.
