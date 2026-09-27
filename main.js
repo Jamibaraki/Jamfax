@@ -12,6 +12,12 @@ class WeatherDataObject {
   feelslike;
 }
 
+if( CONFIG.DEV_MODE == 1 ){
+  document.getElementById("target").style.visibility="visible";
+} else {
+  document.getElementById("target").style.visibility="hidden";
+}
+
 if( CONFIG.LOAD_WEATHER == 1 ){
   loadWeather();
 } else {
