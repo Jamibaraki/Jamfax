@@ -14,4 +14,5 @@ const CONFIG = {
   // enable or disabling loading the various sections here.
   // 1=active 0=disabled
   LOAD_WEATHER: "1",
+  LOAD_SPORTS: "1",
 };
