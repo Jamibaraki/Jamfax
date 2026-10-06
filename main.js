@@ -4,6 +4,9 @@ const endpoint="current.json?q="
 const parameters=CONFIG.WEATHER_LOCATION;
 const url=base+endpoint+parameters+"&key="+key;
 
+const token="0";
+const sports_url="http://localhost:3000/matches";
+
 class WeatherDataObject {
   temperature;
   windspeed;
@@ -22,6 +25,46 @@ if( CONFIG.LOAD_WEATHER == 1 ){
   loadWeather();
 } else {
   document.getElementById("weather-card").innerHTML=`weather disabled`;
+}
+
+if( CONFIG.LOAD_SPORTS == 1 ){
+  loadSports();
+} else {
+  document.getElementById("sports-card").innerHTML=`sports disabled`;
+}
+
+function loadSports(){
+
+fetch(sports_url, {
+  method: "GET",
+  headers: {
+    "X-Auth-Token": token
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+
+  //renderSports(sportsdata);
+
+  console.log(data);
+  //console.log(sportsdata);
+})
+.catch(error => {
+  console.error('Error:', error);
+  document.getElementById("target").value = "network error";
+  document.getElementById("sports-card").innerHTML =
+    `<div class="status error">Could not load sports data</div>`;
+});
+
+}
+
+function rendersSports(sports){
+
 }
 
 function loadWeather(){
