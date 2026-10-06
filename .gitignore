@@ -1,5 +1,7 @@
 # the actual config file. Contains private keys and personal info. Keep private.
 config.js
+node/config.js
 
 # Project notes. Messy. Private.
 jamfaxProjectNotes.txt
+apiinfo.txt

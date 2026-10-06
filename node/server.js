@@ -1,16 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 
+var config = require('./config');
+
+const url_base="https://api.football-data.org/v4/";
+const team = config.team;
+const endpoint="teams/"+team+"/matches?status=SCHEDULED&limit=5";
 const app = express();
 
 app.use(cors());
 
 app.get("/matches", async (req, res) => {
   const response = await fetch(
-    "https://api.football-data.org/v4/teams/65/matches?status=FINISHED&limit=1",
+    url_base+endpoint,
     {
       headers: {
-        "X-Auth-Token": "your_token_here"
+        "X-Auth-Token": config.token
       }
     }
   );
