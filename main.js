@@ -15,6 +15,17 @@ class WeatherDataObject {
   feelslike;
 }
 
+class MatchDataObject {
+  id;
+  date;           // formatted display date
+  competition;
+  homeTeam;
+  awayTeam;
+  homeCrest;
+  awayCrest;
+  status;
+}
+
 if( CONFIG.DEV_MODE == 1 ){
   document.getElementById("target").style.visibility="visible";
 } else {
@@ -35,12 +46,7 @@ if( CONFIG.LOAD_SPORTS == 1 ){
 
 function loadSports(){
 
-fetch(sports_url, {
-  method: "GET",
-  headers: {
-    "X-Auth-Token": token
-  }
-})
+fetch(sports_url)
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -48,11 +54,21 @@ fetch(sports_url, {
   return response.json();
 })
 .then(data => {
+  const matches = (data.matches || []).map(m => {
+    const match = new MatchDataObject();
+    match.id          = m.id;
+    match.date        = formatMatchDate(m.utcDate);
+    match.competition = m.competition?.name || "";
+    match.homeTeam    = m.homeTeam?.name || "TBD";
+    match.awayTeam    = m.awayTeam?.name || "TBD";
+    match.homeCrest   = m.homeTeam?.crest || "";
+    match.awayCrest   = m.awayTeam?.crest || "";
+    match.status      = m.status;
+    return match;
+  });
 
-  //renderSports(sportsdata);
-
-  console.log(data);
-  //console.log(sportsdata);
+  renderSports(matches);
+  console.log(matches);
 })
 .catch(error => {
   console.error('Error:', error);
@@ -63,7 +79,52 @@ fetch(sports_url, {
 
 }
 
-function rendersSports(sports){
+function formatMatchDate(isoString) {
+  if (!isoString) return "";
+  const d = new Date(isoString);
+  return d.toLocaleString(undefined, {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+
+
+function renderSports(matches){
+  const card = document.getElementById("sports-card");
+
+  if (!matches || matches.length === 0) {
+    card.innerHTML = `<div class="status">No upcoming matches</div>`;
+    return;
+  }
+
+  const rows = matches.map(m => `
+    <div class="match-row">
+      <div class="match-competition">${m.competition}</div>
+      <div class="match-teams">
+        <div class="team">
+          ${m.homeCrest ? `<img src="${m.homeCrest}" alt="">` : ""}
+          <span>${m.homeTeam}</span>
+        </div>
+        <div class="vs">vs</div>
+        <div class="team">
+          ${m.awayCrest ? `<img src="${m.awayCrest}" alt="">` : ""}
+          <span>${m.awayTeam}</span>
+        </div>
+      </div>
+      <div class="match-date">${m.date}</div>
+    </div>
+  `).join("");
+
+  card.innerHTML = `
+    <div class="card-title">Upcoming Matches</div>
+    <div class="matches-list">
+      ${rows}
+    </div>
+  `;
 
 }
 
