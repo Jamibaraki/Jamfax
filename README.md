@@ -34,7 +34,7 @@ LOAD_SPORTS: "1",
 
 ### Setting up Sports Scores via Node  
 
-You'll need to install Node which you can read about here: https://www.w3schools.  com/nodejs/nodejs_get_started.asp You'll also need the express and cors modules installed.  
+You'll need to install Node which you can read about here: https://www.w3schools.com/nodejs/nodejs_get_started.asp You'll also need the express and cors modules installed.  
 
 In the Node folder:  
 Rename **config.example.js** to **config.js**  
