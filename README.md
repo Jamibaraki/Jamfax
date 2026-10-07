@@ -2,7 +2,7 @@
 
 News and information sites are increasingly unreliable, messy and slow.  
 
-This aim of this project is to create a dashboard that automatically checks various information sources and presents all the info I want in one place without ads, junk and with minimal lag.   
+The aim of this project is to create a dashboard that automatically checks various information sources and presents all the info I want in one place without ads, junk and with minimal lag.   
 
 The goal is a compact, at-a-glance design that minimizes the need for scrolling.  
 
@@ -40,7 +40,7 @@ In the Node folder:
 Rename **config.example.js** to **config.js**  
 Replace the values in **config.js**:  
 
-config.team = YOUR_TEAM_ID_HERE; You'll need to get the ID for the team you're interested in  from the football-data.org website.  
+config.team = YOUR_TEAM_ID_HERE; You'll need to get the ID for the team you're interested in from the football-data.org website.  
 A few popular ones:  
 	Arsenal: 57  
 	Liverpool: 64  
@@ -48,7 +48,7 @@ A few popular ones:
 config.token = YOUR_FOOTBALL_API_TOKEN_HERE;  
 
 Run server.js with:  
-Node server.js  
+node server.js  
 The node server creates an endpoint /matches  
 
 The main file calls this to get the games. The default URL for the Node service is:  http://localhost:3000/matches  
