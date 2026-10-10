@@ -173,6 +173,7 @@ function renderWeather(weather) {
 
   card.innerHTML = `
     <div class="card-header">
+      <div class="card-title">Current Weather</div>
       <img src="${weather.summarypicurl}" alt="${weather.summary}">
       <div>
         <div class="temperature">${weather.temperature}°</div>
