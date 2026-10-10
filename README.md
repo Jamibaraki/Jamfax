@@ -32,23 +32,33 @@ DEV_MODE: "0", //test output
 LOAD_WEATHER: "1",  
 LOAD_SPORTS: "1",  
 
-### Setting up Sports Scores via Node  
+### Setting up Sports Data via Node  
 
-You'll need to install Node which you can read about here: https://www.w3schools.com/nodejs/nodejs_get_started.asp You'll also need the express and cors modules installed.  
+You'll need to install Node which you can read about here: https://www.w3schools.com/nodejs/nodejs_get_started.asp  
+
+You'll also need the express and cors modules installed.  You can do this with:  
+  
+```
+npm install express cors
+```
 
 In the Node folder:  
 Rename **config.example.js** to **config.js**  
 Replace the values in **config.js**:  
 
 config.team = YOUR_TEAM_ID_HERE; You'll need to get the ID for the team you're interested in from the football-data.org website.  
+
 A few popular ones:  
-	Arsenal: 57  
-	Liverpool: 64  
-	Manchester United: 66  
+
+* Arsenal: 57  
+* Liverpool: 64  
+* Manchester United: 66  
 config.token = YOUR_FOOTBALL_API_TOKEN_HERE;  
 
 Run server.js with:  
+```
 node server.js  
+```
 The node server creates an endpoint /matches  
 
 The main file calls this to get the games. The default URL for the Node service is:  http://localhost:3000/matches  
@@ -62,11 +72,11 @@ Open index.html in your browser
 
 ### Security  
 
-This is a prototype and not suitable for production/ public deployment. Values in config.js are visible to anyone viewing the site.  
+This is a prototype and not suitable for production / public deployment. Values in config.js are visible to anyone viewing the site.  
 
 ### Screenshot
 
-![Dashboard, showing loaded weather and sports scores.](dashboard.png)
+![Dashboard, showing loaded weather and sports fixtures.](dashboard.png)
 
 
 ### Future Improvements
