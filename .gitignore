@@ -5,3 +5,6 @@ node/config.js
 # Project notes. Messy. Private.
 jamfaxProjectNotes.txt
 apiinfo.txt
+
+# system specific node launcher file
+misc/jamfax-node-launcher.bat
