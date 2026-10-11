@@ -80,6 +80,13 @@ This is a prototype and not suitable for production / public deployment. Values 
 ![Dashboard, showing loaded weather and sports fixtures.](dashboard.png)
 
 
+### Windows + WSL helper (optional)
+
+An example batch file for starting/stopping the Node proxy from Windows is in the `misc/` folder.  
+Copy and edit them with your own WSL path and distro name.  
+Once the proxy is running, you can usually stop it with ctrl+c  
+
+
 ### Future Improvements
 
 Caching Data  
