@@ -1,8 +1,8 @@
 const key=CONFIG.WEATHER_API_KEY;
 const base="https://api.weatherapi.com/v1/";
-const endpoint="current.json?q="
+const endpoint="forecast.json?days=3&q="
 const parameters=CONFIG.WEATHER_LOCATION;
-const url=base+endpoint+parameters+"&key="+key;
+const weather_url=base+endpoint+parameters+"&key="+key;
 
 const token="0";
 const sports_url="http://localhost:3000/matches";
@@ -14,6 +14,7 @@ class WeatherDataObject {
   summarypicurl;
   feelslike;
   location;
+  forecast;
 }
 
 class MatchDataObject {
@@ -69,7 +70,7 @@ fetch(sports_url)
   });
 
   renderSports(matches);
-  console.log(matches);
+  //console.log(matches);
 })
 .catch(error => {
   console.error('Error:', error);
@@ -89,6 +90,16 @@ function formatMatchDate(isoString) {
     month: "short",
     hour: "2-digit",
     minute: "2-digit"
+  });
+}
+
+function formatForecastDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr + "T00:00:00"); // avoid timezone shift
+  return d.toLocaleDateString(undefined, {
+    weekday: "short",
+    day: "numeric",
+    month: "short"
   });
 }
 
@@ -131,7 +142,7 @@ function renderSports(matches){
 
 function loadWeather(){
 
-  fetch(url)
+  fetch(weather_url)
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -139,6 +150,7 @@ function loadWeather(){
   return response.json();
 })
 .then(data => {
+  //console.log(data);
   document.getElementById("target").value = data.current.temp_c;
   weatherdata = new WeatherDataObject();
   weatherdata.temperature = data.current.temp_c;
@@ -147,6 +159,7 @@ function loadWeather(){
   weatherdata.summarypicurl = data.current.condition.icon;
   weatherdata.feelslike = data.current.feelslike_c;
   weatherdata.location = data.location.name;
+  weatherdata.forecast = data.forecast.forecastday;
   
   // Make sure the icon URL is complete (WeatherAPI sometimes returns //cdn...)
   if (weatherdata.summarypicurl && weatherdata.summarypicurl.startsWith("//")) {
@@ -173,9 +186,34 @@ function loadWeather(){
 function renderWeather(weather) {
   const card = document.getElementById("weather-card");
 
+  // Build the 3-day forecast rows
+  const forecastRows = (weather.forecast || []).map(day => {
+    let icon = day.day?.condition?.icon || "";
+    if (icon.startsWith("//")) icon = "https:" + icon;
+
+    const dateLabel = formatForecastDate(day.date);
+    const condition = day.day?.condition?.text || "";
+    const avg = day.day?.avgtemp_c ?? "—";
+    const max = day.day?.maxtemp_c ?? "";
+    const min = day.day?.mintemp_c ?? "";
+
+    return `
+      <div class="forecast-day">
+        <div class="forecast-date">${dateLabel}</div>
+        ${icon ? `<img src="${icon}" alt="${condition}" class="forecast-icon">` : ""}
+        <div class="forecast-temps">
+          <span class="forecast-avg">${avg}°</span>
+          <span class="forecast-range">${min}° / ${max}°</span>
+        </div>
+        <div class="forecast-condition">${condition}</div>
+      </div>
+    `;
+  }).join("");
+
   card.innerHTML = `
+    <div class="card-title">Current ${weather.location || ""} Weather</div>
+
     <div class="card-header">
-      <div class="card-title">Current ${weather.location} Weather</div>
       <img src="${weather.summarypicurl}" alt="${weather.summary}">
       <div>
         <div class="temperature">${weather.temperature}°</div>
@@ -188,10 +226,16 @@ function renderWeather(weather) {
         <div class="detail-label">Wind</div>
         <div class="detail-value">${weather.windspeed} mph</div>
       </div>
-      <!-- Easy to add more fields later -->
       <div class="detail">
         <div class="detail-label">Feels like</div>
         <div class="detail-value">${weather.feelslike}°</div>
+      </div>
+    </div>
+
+    <div class="forecast-section">
+      <div class="forecast-title">3-Day Forecast</div>
+      <div class="forecast-list">
+        ${forecastRows}
       </div>
     </div>
   `;
