@@ -13,6 +13,7 @@ class WeatherDataObject {
   summary;//condition: rainy, sunny, etc
   summarypicurl;
   feelslike;
+  location;
 }
 
 class MatchDataObject {
@@ -145,6 +146,7 @@ function loadWeather(){
   weatherdata.summary = data.current.condition.text;
   weatherdata.summarypicurl = data.current.condition.icon;
   weatherdata.feelslike = data.current.feelslike_c;
+  weatherdata.location = data.location.name;
   
   // Make sure the icon URL is complete (WeatherAPI sometimes returns //cdn...)
   if (weatherdata.summarypicurl && weatherdata.summarypicurl.startsWith("//")) {
@@ -173,7 +175,7 @@ function renderWeather(weather) {
 
   card.innerHTML = `
     <div class="card-header">
-      <div class="card-title">Current Weather</div>
+      <div class="card-title">Current ${weather.location} Weather</div>
       <img src="${weather.summarypicurl}" alt="${weather.summary}">
       <div>
         <div class="temperature">${weather.temperature}°</div>
