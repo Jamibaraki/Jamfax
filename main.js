@@ -1,11 +1,5 @@
-const key=CONFIG.WEATHER_API_KEY;
-const base="https://api.weatherapi.com/v1/";
-const endpoint="forecast.json?days=3&q="
-const parameters=CONFIG.WEATHER_LOCATION;
-const weather_url=base+endpoint+parameters+"&key="+key;
-
-const token="0";
 const sports_url="http://localhost:3000/matches";
+const weather_node="http://localhost:3000/weather";
 
 class WeatherDataObject {
   temperature;
@@ -140,9 +134,10 @@ function renderSports(matches){
 
 }
 
+
 function loadWeather(){
 
-  fetch(weather_url)
+  fetch(weather_node)
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -150,7 +145,6 @@ function loadWeather(){
   return response.json();
 })
 .then(data => {
-  //console.log(data);
   document.getElementById("target").value = data.current.temp_c;
   weatherdata = new WeatherDataObject();
   weatherdata.temperature = data.current.temp_c;
@@ -181,8 +175,6 @@ function loadWeather(){
 }
 
 
-
-// New rendering function
 function renderWeather(weather) {
   const card = document.getElementById("weather-card");
 

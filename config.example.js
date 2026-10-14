@@ -1,12 +1,8 @@
 // Rename this file to config.js and fill in your required values
 
-
 const CONFIG = {
-  WEATHER_API_KEY: "your_api_key_here",
-  WEATHER_LOCATION: "0.0000,0.0000", //replace values with your latitude and longitude
 
-
-  // enables a text area used to output quick tests, etc
+  // enables the text area used to output quick tests, etc
   // 1=active 0=disabled
   DEV_MODE: "0", 
 
