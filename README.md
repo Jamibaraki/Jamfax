@@ -23,16 +23,13 @@ football-data.org
 Rename **config.example.js** to **config.js**  
 Replace the values in **config.js**:  
 
-* WEATHER_API_KEY: your new API key.  
-* WEATHER_LOCATION: your latitude and longitude, eg "35.5098,139.6145" if you're at Yokohama Ramen Museum.  
-
 Optionally set these values to 1 or 0 depending on what you want to see.  
 1 = visible, 0 = invisible  
 DEV_MODE: "0", //test output  
 LOAD_WEATHER: "1",  
 LOAD_SPORTS: "1",  
 
-### Setting up Sports Data via Node  
+### Setting up Sports Data and Weather Data via Node  
 
 You'll need to install Node which you can read about here: https://www.w3schools.com/nodejs/nodejs_get_started.asp  
 
@@ -48,6 +45,9 @@ Replace the values in **config.js**:
 
 config.team = YOUR_TEAM_ID_HERE; You'll need to get the ID for the team you're interested in from the football-data.org website. A few examples are listed below.   
 config.token = YOUR_FOOTBALL_API_TOKEN_HERE;  
+config.weather_api_key = your weather API key.  
+config.weather_location = your latitude and longitude, eg "35.5098,139.6145" if you're at Yokohama Ramen Museum.  
+
 
 A few popular team name IDs:  
 
@@ -60,11 +60,11 @@ Run server.js with:
 ```
 node server.js  
 ```
-The node server creates an endpoint /matches  
+The node server creates endpoints /matches  and /weather
 
-The main file calls this to get the games. The default URL for the Node service is: http://localhost:3000/matches  
-This is currently hardcoded in main.js as the value of sports_url  
-You'll need to change this if your Node setup uses a different location.  
+The main.js file calls this to get the games and weather. The default URLs for the Node service are: http://localhost:3000/matches and http://localhost:3000/weather  
+These are currently hardcoded in main.js as the values of sports_url and weather_node   
+You'll need to change them if your Node setup uses a different location.  
 You could run this on a service like Vercel, or AWS instead if you have access to those.  
 
 ### Using the actual dashboard  
@@ -92,3 +92,4 @@ See misc/example-jamfax-node-launcher.bat
 
 Caching Data  
 More Services
+Alternate frontend css
