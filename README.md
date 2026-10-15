@@ -10,7 +10,11 @@ The goal is a compact, at-a-glance design that minimizes the need for scrolling.
 
 Runs in the browser  
 Needs API keys from supporting services  
-Sports data requires setting up a Node service  
+Requires setting up a Node service  
+
+### Architecture
+
+Uses a Node backend to query external service APIs, then present that data via endpoints used by frontend JavaScript.  
 
 ### Setup  
 
@@ -29,7 +33,7 @@ DEV_MODE: "0", //test output
 LOAD_WEATHER: "1",  
 LOAD_SPORTS: "1",  
 
-### Setting up Sports Data and Weather Data via Node  
+### Setting up Sports and Weather Data via Node  
 
 You'll need to install Node which you can read about here: https://www.w3schools.com/nodejs/nodejs_get_started.asp  
 
