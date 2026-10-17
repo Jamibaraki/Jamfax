@@ -95,5 +95,5 @@ See misc/example-jamfax-node-launcher.bat
 ### Future Improvements
 
 Caching Data  
-More Services
+More Services  
 Alternate frontend css
