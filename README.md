@@ -4,7 +4,9 @@ News and information sites are increasingly unreliable, messy and slow.
 
 The aim of this project is to create a dashboard that automatically checks various information sources and presents all the info I want in one place without ads, junk and with minimal lag.  
 
-The goal is a compact, at-a-glance design that minimizes the need for scrolling.  
+The goal is a compact, at-a-glance design that minimizes the need for scrolling.
+
+The current version shows local weather and football fixtures.  
 
 ### Requirements  
 
@@ -97,3 +99,7 @@ See misc/example-jamfax-node-launcher.bat
 Caching Data  
 More Services  
 Alternate frontend css
+
+### Limitations  
+
+The free version of the API I'm using only shows a limited number of competitions, so domestic cup games won't be displayed.
